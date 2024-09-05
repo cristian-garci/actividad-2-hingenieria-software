@@ -1,0 +1,83 @@
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Información para la Oferta de Empleo</title>
+    <link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+  
+    <main>
+        <section id="solicitantes">
+            <h2> vacantes de Empleo</h2>
+            <form id="formulario-solicitantes">
+                <label for="nombre-solicitante">Nombre:</label>
+                <input type="text" id="nombre-solicitante" name="nombre-solicitante">
+                <label for="direccion-solicitante">Dirección:</label>
+                <input type="text" id="direccion-solicitante" name="direccion-solicitante">
+                <label for="telefono-solicitante">Teléfono:</label>
+                <input type="tel" id="telefono-solicitante" name="telefono-solicitante">
+                <label for="correo-solicitante">Correo electrónico:</label>
+                <input type="email" id="correo-solicitante" name="correo-solicitante">
+                <label for="nivel-estudio">Nivel de estudio:</label>
+                <select id="nivel-estudio">
+                    <option value="ingeniero">Ingeniero</option>
+                    <option value="maestria">Maestría</option>
+                    <option value="doctorado">Doctorado</option>
+                    <option value="tecnico">Técnico</option>
+                    <option value="tecnologo">Tecnólogo</option>
+                </select>
+                <label for="experiencia-laboral">Experiencia laboral:</label>
+                <select id="experiencia-laboral">
+                    <option value="sin-experiencia">Sin experiencia</option>
+                    <option value="1-2-años">1-2 años</option>
+                    <option value="2-5-años">2-5 años</option>
+                    <option value="5-10-años">5-10 años</option>
+                </select>
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        const formulario = document.getElementById('formulario-solicitantes');
+        const nivelEstudio = document.getElementById('nivel-estudio');
+        const experienciaLaboral = document.getElementById('experiencia-laboral');
+
+        formulario.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const nivel = nivelEstudio.value;
+            const experiencia = experienciaLaboral.value;
+
+            if (nivel === 'ingeniero' || nivel === 'maestria' || nivel === 'doctorado') {
+                if (experiencia === 'sin-experiencia') {
+                    alert('No apto. Se requiere experiencia laboral para este puesto.');
+                } else if (experiencia === '1-2-años' || experiencia === '2-5-años') {
+                    switch (nivel) {
+                        case 'ingeniero':
+                            window.location.href = 'puestos.html';
+                            break;
+                        case 'maestria':
+                            window.location.href = 'maestria.html';
+                            break;
+                        case 'doctorado':
+                            window.location.href = 'doctorado.html';
+                            break;
+                    }
+                } else {
+                    alert('No apto. La experiencia laboral debe ser entre 1 y 5 años.');
+                }
+            } else {
+                switch (nivel) {
+                    case 'tecnico':
+                        window.location.href = 'tecni-tegnologol.html';
+                        break;
+                    case 'tecnologo':
+                        window.location.href = 'tecni-tegnologol.html';
+                        break;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
